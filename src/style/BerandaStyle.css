@@ -1,0 +1,74 @@
+/* Section Pertama (section-1)*/
+.section-1-text {
+  padding-top: 15rem;
+  margin-left: 6rem;
+  margin-bottom: 3rem;
+}
+
+.section-1 {
+  background-image: url(D:\persnl\Jaladirishti\src\assets\Background-1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: fit-content;
+}
+#btn-laporkan-banjir {
+  border: 1px solid rgb(147, 191, 233);
+  border-radius: 5px;
+  width: 13rem;
+  height: 3rem;
+  margin-top: 3rem;
+}
+
+/* Section kedua (section-2)*/
+.section-2-text {
+  margin-left: 6rem;
+}
+.section-2-wrapper {
+  display: flex;
+  margin-top: 3rem;
+  margin-right: 9rem;
+  gap: 2rem;
+}
+.img-tentang-surabaya {
+  width: 450px;
+}
+
+/* Section ketiga (section-3)*/
+.section-3 {
+  background-image: url(D:\persnl\Jaladirishti\src\assets\Background-2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: fit-content;
+}
+.kiri {
+  max-width: 40%;
+}
+.kanan {
+  max-width: 60%;
+}
+.search-bar {
+  display: flex;
+  gap: 0.8rem;
+}
+#cari-daerahmu {
+  width: 22rem;
+  height: 2rem;
+  border-radius: 4px;
+}
+.section-3-wrapper {
+  display: flex;
+  border: 4px white solid;
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+/* Section keempat (section-4)*/
+.section-4-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.section-4-text {
+  display: flex;
+  flex-direction: column;
+}

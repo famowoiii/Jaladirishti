@@ -1,0 +1,33 @@
+/* MapPotensiStyle.css */
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+}
+
+.ol-popup p {
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  width: 70%;
+  height: 400px;
+}
+.map1 {
+  min-width: fit-content;
+  min-height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+.map-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+}
