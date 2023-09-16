@@ -4,21 +4,27 @@ import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import { BeritaSlider } from "../components/BeritaSlider";
 import MapPotensi from "../function/MapPotensi";
+import { BsFillExclamationCircleFill } from "react-icons/bs";
+import DarkVariantExample from "../components/Topografi";
+import "../Data/DataBerita.json";
+import { MapPreview2 } from "../components/MapPreview2";
+import { MapPreview } from "../components/MapPreview";
 
-import { data } from "../Data/DataBerita.json";
-const MyBeranda = () => {
+const MyBeranda = (props) => {
   return (
     <div>
       {/* Section-1 Start */}
       <section className="section-1">
         <div className="section-1-text">
-          <h3>Jaladirishti</h3>
+          <h1>Jaladirishti</h1>
           <p>
             Layanan Sistem Informasi Banjir dan Pelaporan Banjir di Kota
             Surabaya
           </p>
           <button id="btn-laporkan-banjir">
-            <Link to="/laporkan">Laporkan Banjir!</Link>
+            <Link to="/laporkan" className="btn-laporkan-banjir">
+              Laporkan Banjir!
+            </Link>
           </button>
         </div>
         <svg
@@ -78,19 +84,26 @@ const MyBeranda = () => {
                 id="cari-daerahmu"
                 placeholder="Cari Daerahmu!"
               />
-              <button>Cari</button>
+              <button id="button-search">Cari</button>
             </div>
 
-            <div className="riwayat-laporan">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo
-              voluptatum maiores officia libero doloremque molestiae reiciendis
-              at, beatae numquam accusamus.
+            <div className="laporan-section">
+              <div className="laporan-1">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Tempora, illum?
+              </div>
+              <div className="laporan-section-2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. A,
+                facere.
+              </div>
+              <div className="laporan-section-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Aspernatur, nesciunt?
+              </div>
             </div>
           </div>
           <div className="kanan">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-            eligendi quis reprehenderit repudiandae ullam vero exercitationem
-            sit eveniet voluptas repellendus!
+            <MapPreview2 />
           </div>
         </div>
         <svg
@@ -108,24 +121,148 @@ const MyBeranda = () => {
       {/* section-4*/}
       <section className="section-4">
         <div className="section-4-wrapper">
-          <div className="section-4-text">
-            <h2>Peta Potensi Banjir di Surabaya</h2>
-            <p>Data real-time dari Open Layer</p>
+          <h2>Peta Potensi Banjir di Surabaya</h2>
+
+          <MapPotensi />
+
+          <div className="map-text">
+            <BsFillExclamationCircleFill />
+            silahkan pilih daerah di area Peta Kota Surabaya untuk melihat
+            tingkat resiko banjir
           </div>
-          <div>
-            <div className="map-potensi">
-              <MapPotensi />
+        </div>
+      </section>
+      {/* section-5*/}
+      <section className="section-5">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#fff"
+            fill-opacity="1"
+            d="M0,64L80,90.7C160,117,320,171,480,165.3C640,160,800,96,960,69.3C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+          ></path>
+        </svg>
+        <div className="section-5-wrapper">
+          <div className="img">
+            <DarkVariantExample />
+          </div>
+          <div className="section-5-text">
+            <h3>Topografi Wilayah</h3>
+            <h3>Data Raster Overlay Potensi Banjir</h3>
+            <p>
+              Secara tpografi Surabaya memiliki ketinggian 3-6 meter di atas
+              permukaan laut. Secara geografis, Kota Surabaya terletak di hilir
+              daerah aliran sungai (DAS) Brantas yang bermuara di Selat Madura
+            </p>
+            <div className="legenda">
+              <div className="aman"></div>
+              <div className="berpotensi"></div>
+              <div className="sangat berpotensi"></div>
             </div>
-            <div className="map-text">
-              silahkan pilih daerah di area Peta Kota Surabaya untuk melihat
-              tingkat resiko banjir
+          </div>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          className="svg-1"
+        >
+          <path
+            fill="#fff"
+            fill-opacity="1"
+            d="M0,192L80,202.7C160,213,320,235,480,229.3C640,224,800,192,960,186.7C1120,181,1280,203,1360,213.3L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          ></path>
+        </svg>
+      </section>
+      {/* section-6*/}
+      <section className="section-6">
+        <div className="section-6-wrapper">
+          <div className="section-6-text">Berita Banjir di Surabaya</div>
+          <div>
+            <BeritaSlider deviceType={props.deviceType} />
+          </div>
+        </div>
+      </section>
+      {/* section-7*/}
+      <section className="section-7">
+        <div className="section-7-wrapper">
+          <div className="section-7-title">
+            <h2>Upaya Mencegah Banjir</h2>
+          </div>
+          <div className="section-7-content">
+            <div className="tutorial">
+              <button className="tutorial-1">
+                <p>1</p>
+                <p>Membersihkan Lingkungan & Saluran Air</p>
+              </button>
+              <button className="tutorial-2">
+                <p>2</p>
+                <p>Membuang Sampah Pada Tempatnya</p>
+              </button>
+              <button className="tutorial-3">
+                <p>3</p>
+                <p>Menanam Pohon di Sekitar Area Rumah</p>
+              </button>
+              <button className="tutorial-4">
+                <p>4</p>
+                <p>Mengurangi Penggunaan Plastik</p>
+              </button>
+            </div>
+            <div className="section-7-img">
+              <img src="src\assets\react.svg" alt="" />
+              <h2>lingkungan yang bersih</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+                laborum natus ullam reprehenderit! Exercitationem dolores error
+                libero animi officiis atque porro temporibus obcaecati omnis
+                molestias sint corporis rerum eum recusandae dolore harum
+                veritatis incidunt, assumenda minus repellendus provident beatae
+                praesentium? Ut soluta ex debitis. Debitis ipsa exercitationem
+                aspernatur quod dolorum repellendus nemo minima tempore
+                necessitatibus neque voluptas optio vel, quia quasi iusto
+                nesciunt perferendis in tenetur?
+              </p>
             </div>
           </div>
         </div>
       </section>
-      <section className="section-5"></section>
-      <section className="section-6">
-        <BeritaSlider props={data} />
+      {/* section-8*/}
+      <section className="section-8">
+        <div className="section-8-wrapper">
+          <div className="footer-title">
+            <h4>Jaladirishti</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+              earum sed doloremque blanditiis! Architecto nesciunt minus ex
+              incidunt, minima perferendis neque atque provident, aut error
+              repellat voluptates sint dolor ea.
+            </p>
+          </div>
+          <div className="footer-menu">
+            <div className="Beranda-button">
+              <h4>Beranda</h4>{" "}
+              <Link to="/" className="link">
+                Beranda
+              </Link>
+            </div>
+            <div className="laporan-button">
+              <h4>Laporan</h4>{" "}
+              <Link to="/laporan" className="link">
+                Laporan
+              </Link>
+            </div>
+            <div className="berita-button">
+              <h4>Berita</h4>{" "}
+              <Link to="/berita" className="link">
+                berita
+              </Link>
+            </div>
+            <div className="tentang-button">
+              <h4>Tentang</h4>{" "}
+              <Link to="/tentang" className="link" s>
+                tentang
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

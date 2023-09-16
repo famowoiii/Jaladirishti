@@ -17,10 +17,11 @@
 
 #map {
   width: 70%;
-  height: 400px;
+  height: 350px;
+  border-radius: 6rem;
 }
 .map1 {
-  min-width: fit-content;
+  min-width: 1300px;
   min-height: fit-content;
   justify-content: center;
   align-items: center;

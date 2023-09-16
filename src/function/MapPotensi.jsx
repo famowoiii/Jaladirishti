@@ -123,7 +123,7 @@ const MapPotensi = () => {
   return (
     <div className="map1">
       <div className="map-wrapper">
-        <div id="map"></div>
+        <div id="map"> </div>
       </div>
     </div>
   );

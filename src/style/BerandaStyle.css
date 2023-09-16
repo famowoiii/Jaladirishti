@@ -3,6 +3,20 @@
   padding-top: 15rem;
   margin-left: 6rem;
   margin-bottom: 3rem;
+  color: white;
+}
+.section-1-text p {
+  font-size: 22px;
+}
+
+.section-1-text .btn-laporkan-banjir {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+.section-1-text #btn-laporkan-banjir {
+  border: none;
+  border-radius: 70px;
 }
 
 .section-1 {
@@ -40,35 +54,227 @@
   background-size: cover;
   min-height: fit-content;
 }
+
 .kiri {
   max-width: 40%;
+  margin-left: 4px;
 }
 .kanan {
-  max-width: 60%;
+  display: flex;
+}
+#button-search {
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(237, 123, 18);
+  color: white;
 }
 .search-bar {
   display: flex;
   gap: 0.8rem;
+  width: 100%;
+
+  transform: translateX(-5rem);
+}
+.laporan-section {
+  background-color: aliceblue;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 9px;
+  min-height: fit-content;
+}
+.laporan-section.laporan-section-1 {
+  border-top: none;
+}
+.laporan-section div {
+  min-height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 8px;
 }
 #cari-daerahmu {
-  width: 22rem;
+  width: 39rem;
   height: 2rem;
   border-radius: 4px;
+  border: none;
 }
 .section-3-wrapper {
   display: flex;
-  border: 4px white solid;
-  margin-left: 6rem;
-  margin-right: 6rem;
+  padding-left: 5rem;
+  padding-right: 4rem;
+  flex-wrap: wrap;
+  height: fit-content;
 }
 
 /* Section keempat (section-4)*/
+
 .section-4-wrapper {
   display: flex;
-  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  gap: 1rem;
+  width: 100%;
 }
-.section-4-text {
+
+.section-4 {
+  min-height: fit-content;
+}
+.map-text {
+  padding-top: 1rem;
+}
+
+/* Section lima (section-5)*/
+
+.section-5 {
+  background-color: rgb(0, 69, 155);
+  min-height: fit-content;
+}
+.section-5-wrapper {
+  margin: 3rem;
+  margin-left: 3rem;
+  color: white;
+  margin-right: 3rem;
+  display: flex;
+  gap: 3rem;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.sectoin-5-text {
+  display: flex;
+  flex-direction: row;
+}
+/* section-6*/
+.section-6-wrapper {
   display: flex;
   flex-direction: column;
+}
+.section-6-wrapper .section-6-text {
+  margin-left: 41%;
+  font-size: 27px;
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+/* section-7*/
+.section-7-wrapper {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 3rem;
+  padding-bottom: 2rem;
+}
+
+.section-7-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.section-7-content .tutorial {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.section-7-content .tutorial button {
+  border: none;
+  border-radius: 5rem;
+  height: 60px;
+  width: 32rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5rem;
+  justify-content: flex-start;
+  padding-left: 2rem;
+  background-color: rgb(0, 69, 155);
+  color: white;
+  font-size: 19px;
+}
+
+.section-7-img {
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+  transform: translateY(-2rem);
+}
+.section-7-img img {
+  width: 150px;
+  border: solid greenyellow 1px;
+}
+/* section-8*/
+
+.section-8 {
+  background-color: rgb(65, 64, 64);
+  color: white;
+  text-decoration: none;
+}
+.section-8-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding-left: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.footer-title {
+  width: 28%;
+}
+.footer-menu {
+  gap: 1rem;
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+
+  margin-left: 3rem;
+}
+
+.footer-menu div .link {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+  /* Mengurangi ukuran font dalam persen */
+  /* section-1*/
+  .section-1 {
+    font-size: 60%;
+  }
+  /* section-2*/
+  .section-2 {
+    font-size: 60%;
+  }
+
+  .section-2 img {
+    width: 450%;
+  }
+  /* section-3*/
+  .section-3 {
+    font-size: 60%;
+  }
+  .section-3-wrapper {
+    display: flex;
+    border: 4px white solid;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    flex-wrap: wrap;
+    min-height: fit-content;
+  }
+  .kiri {
+    margin-left: 1rem;
+  }
+
+  /* section-4*/
+  .section-4 {
+    font-size: 60%;
+  }
+  /* section-5*/
+  .section-5 {
+    font-size: 60%;
+  }
+  .section-5-wrapper {
+    flex-wrap: wrap;
+  }
+  /* section-6*/
+  .section-6 {
+    font-size: 60%;
+  }
 }
