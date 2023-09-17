@@ -10,7 +10,19 @@ import "../Data/DataBerita.json";
 import { MapPreview2 } from "../components/MapPreview2";
 import { MapPreview } from "../components/MapPreview";
 
+//import component yang berisikan keterangan untnuk button pada section 7
+import { Step1 } from "../PagesTutorial/Membersihkan";
+import { Step2 } from "../PagesTutorial/Membuang";
+import { Step3 } from "../PagesTutorial/Menanam";
+import { Step4 } from "../PagesTutorial/Mengurangi";
+import { useState } from "react";
+
 const MyBeranda = (props) => {
+  const [Active, setActive] = useState(null);
+
+  const handleButton = (step) => {
+    setActive(step);
+  };
   return (
     <div>
       {/* Section-1 Start */}
@@ -189,36 +201,41 @@ const MyBeranda = (props) => {
           </div>
           <div className="section-7-content">
             <div className="tutorial">
-              <button className="tutorial-1">
+              <button
+                className="tutorial-1"
+                onClick={() => handleButton("Step1")}
+              >
                 <p>1</p>
                 <p>Membersihkan Lingkungan & Saluran Air</p>
               </button>
-              <button className="tutorial-2">
+              <button
+                className="tutorial-2"
+                onClick={() => handleButton("Step2")}
+              >
                 <p>2</p>
                 <p>Membuang Sampah Pada Tempatnya</p>
               </button>
-              <button className="tutorial-3">
+              <button
+                className="tutorial-3"
+                onClick={() => handleButton("Step3")}
+              >
                 <p>3</p>
                 <p>Menanam Pohon di Sekitar Area Rumah</p>
               </button>
-              <button className="tutorial-4">
+              <button
+                className="tutorial-4"
+                onClick={() => handleButton("Step4")}
+              >
                 <p>4</p>
                 <p>Mengurangi Penggunaan Plastik</p>
               </button>
             </div>
             <div className="section-7-img">
-              <img src="src\assets\react.svg" alt="" />
-              <h2>lingkungan yang bersih</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                laborum natus ullam reprehenderit! Exercitationem dolores error
-                libero animi officiis atque porro temporibus obcaecati omnis
-                molestias sint corporis rerum eum recusandae dolore harum
-                veritatis incidunt, assumenda minus repellendus provident beatae
-                praesentium? Ut soluta ex debitis. Debitis ipsa exercitationem
-                aspernatur quod dolorum repellendus nemo minima tempore
-                necessitatibus neque voluptas optio vel, quia quasi iusto
-                nesciunt perferendis in tenetur?
+                {Active === "Step1" && <Step1 />}
+                {Active === "Step2" && <Step2 />}
+                {Active === "Step3" && <Step3 />}
+                {Active === "Step4" && <Step4 />}
               </p>
             </div>
           </div>
