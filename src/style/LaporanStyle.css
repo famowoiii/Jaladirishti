@@ -69,6 +69,7 @@
 .chart {
   width: 520px;
   border-radius: 6px;
+  border: aqua 1px solid;
   height: 275px;
   display: flex;
   padding: 5px;

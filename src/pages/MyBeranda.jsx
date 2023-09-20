@@ -8,7 +8,8 @@ import { BsFillExclamationCircleFill } from "react-icons/bs";
 import DarkVariantExample from "../components/Topografi";
 import "../Data/DataBerita.json";
 import { MapPreview2 } from "../components/MapPreview2";
-import { MapPreview } from "../components/MapPreview";
+
+import MapPreview from "../components/MapPreview";
 
 //import component yang berisikan keterangan untnuk button pada section 7
 import { Step1 } from "../PagesTutorial/Membersihkan";
@@ -18,6 +19,51 @@ import { Step4 } from "../PagesTutorial/Mengurangi";
 import { useState } from "react";
 
 const MyBeranda = (props) => {
+  useEffect(() => {
+    const storedLocation = localStorage.getItem("userLocation");
+    if (storedLocation) {
+      const locationData = JSON.parse(storedLocation);
+      setUserLocation(locationData);
+    }
+  }, []);
+  const [userLocation, setUserLocation] = useState([]);
+
+  const [inputValue, setInputValue] = useState("");
+
+  const requestLocationPermission = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          const userLocationData = {
+            latitude: latitude,
+            longitude: longitude,
+          };
+
+          // Menyalin data lokasi pengguna sebelumnya dari state
+          const existingData = [...userLocation];
+
+          // Menambahkan lokasi baru ke dalam array
+          existingData.push(userLocationData);
+
+          // Simpan lokasi pengguna ke localStorage
+          localStorage.setItem("userLocation", JSON.stringify(existingData));
+
+          // Perbarui state userLocation dengan data yang sudah ada
+          setUserLocation(existingData);
+          setInputValue(`${latitude}, ${longitude}`);
+        },
+        (error) => {
+          console.error("Error fetching location:", error);
+        }
+      );
+    } else {
+      alert("Geolocation tidak didukung oleh browser Anda.");
+    }
+  };
+
   const [Active, setActive] = useState(null);
 
   const handleButton = (step) => {
@@ -33,7 +79,8 @@ const MyBeranda = (props) => {
             Layanan Sistem Informasi Banjir dan Pelaporan Banjir di Kota
             Surabaya
           </p>
-          <button id="btn-laporkan-banjir">
+
+          <button id="btn-laporkan-banjir" onClick={requestLocationPermission}>
             <Link to="/laporkan" className="btn-laporkan-banjir">
               Laporkan Banjir!
             </Link>
@@ -115,7 +162,7 @@ const MyBeranda = (props) => {
             </div>
           </div>
           <div className="kanan">
-            <MapPreview2 />
+            <MapPreview />
           </div>
         </div>
         <svg

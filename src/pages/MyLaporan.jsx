@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import "../style/LaporanStyle.css";
-import { MapPreview } from "../components/MapPreview";
-import { DEFAULT_MIN_BREAKPOINT } from "react-bootstrap/esm/ThemeProvider";
+import MapPreview from "../components/MapPreview";
+
 import { AiOutlineSend } from "react-icons/ai";
 const MyLaporan = () => {
   return (
