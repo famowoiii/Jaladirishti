@@ -27,9 +27,7 @@ const MyBeranda = (props) => {
     }
   }, []);
   const [userLocation, setUserLocation] = useState([]);
-
   const [inputValue, setInputValue] = useState("");
-
   const requestLocationPermission = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -41,16 +39,12 @@ const MyBeranda = (props) => {
             latitude: latitude,
             longitude: longitude,
           };
-
           // Menyalin data lokasi pengguna sebelumnya dari state
           const existingData = [...userLocation];
-
           // Menambahkan lokasi baru ke dalam array
           existingData.push(userLocationData);
-
           // Simpan lokasi pengguna ke localStorage
           localStorage.setItem("userLocation", JSON.stringify(existingData));
-
           // Perbarui state userLocation dengan data yang sudah ada
           setUserLocation(existingData);
           setInputValue(`${latitude}, ${longitude}`);

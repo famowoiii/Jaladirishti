@@ -9,7 +9,7 @@ import "./MapPreviewStyle.css";
 export const MapPreview2 = () => {
   useEffect(() => {
     const map = new Map({
-      target: "map1",
+      target: "map2",
       layers: [
         new TileLayer({
           source: new OSM(),
@@ -29,7 +29,7 @@ export const MapPreview2 = () => {
 
   return (
     <div>
-      <div id="map1"></div>
+      <div id="map2"></div>
     </div>
   );
 };

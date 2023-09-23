@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
@@ -9,11 +9,13 @@ import { Feature } from "ol";
 import { Style, Circle, Fill, Stroke } from "ol/style";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
-import GeoJSON from "ol/format/GeoJSON"; // Impor GeoJSON
+import GeoJSON from "ol/format/GeoJSON";
 
 import "./MapPreview2Style.css";
 
 const MapPreview = () => {
+  const [redCircleSource, setRedCircleSource] = useState(new VectorSource());
+
   useEffect(() => {
     const redCircleStyle = new Style({
       image: new Circle({
@@ -23,7 +25,6 @@ const MapPreview = () => {
       }),
     });
 
-    const redCircleSource = new VectorSource();
     const redCircleLayer = new VectorLayer({
       source: redCircleSource,
       style: redCircleStyle,
@@ -43,39 +44,41 @@ const MapPreview = () => {
       }),
     });
 
-    const storedLocation = localStorage.getItem("userLocation");
-    if (storedLocation) {
-      const locationData = JSON.parse(storedLocation);
-      const latitude = parseFloat(locationData.latitude);
-      const longitude = parseFloat(locationData.longitude);
+    // Ambil data lokasi dari database atau sumber data eksternal lainnya
+    fetch("URL_DATABASE_ATAU_API")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.latitude && data.longitude) {
+          // Buat redCircleFeature berdasarkan data dari database
+          const redCircleFeature = new Feature({
+            geometry: new Point(fromLonLat([data.longitude, data.latitude])),
+          });
+          redCircleSource.addFeature(redCircleFeature);
 
-      const redCircleFeature = new Feature({
-        geometry: new Point(fromLonLat([longitude, latitude])),
+          // Set center view peta berdasarkan data dari database
+          map.getView().setCenter(fromLonLat([data.longitude, data.latitude]));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
-      redCircleSource.addFeature(redCircleFeature);
 
-      map.getView().setCenter(fromLonLat([longitude, latitude]));
-    }
-
-    // Buat sumber data dari file JSON yang ada di folder public
     const geojsonSource = new VectorSource({
       url: "./ADMINISTRASIDESA_AR_25K_Feat.json",
       format: new GeoJSON(),
     });
 
-    // Buat lapisan untuk data GeoJSON
     const geojsonLayer = new VectorLayer({
       source: geojsonSource,
-      // Anda dapat menyesuaikan gaya dan sifat lainnya sesuai kebutuhan Anda
+      // Customize styles and properties as needed
     });
 
-    // Tambahkan lapisan GeoJSON ke dalam peta
     map.addLayer(geojsonLayer);
 
     return () => {
       map.setTarget(null);
     };
-  }, []);
+  }, [redCircleSource]);
 
   return (
     <div className="map-preview">

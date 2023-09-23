@@ -45,7 +45,7 @@ const MapPotensi = () => {
       element: popupElement,
       autoPan: true,
       autoPanAnimation: {
-        duration: 300,
+        duration: 400,
       },
     });
     map.addOverlay(popup);
@@ -54,9 +54,10 @@ const MapPotensi = () => {
     const style = new Style({
       fill: new Fill({
         color: "aqua",
+        opacity: 0.7,
       }),
       stroke: new Stroke({
-        color: "red",
+        color: "black",
       }),
     });
 

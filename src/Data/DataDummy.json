@@ -1,0 +1,38 @@
+{
+  "Data yang diperlukan": [
+    {
+      "Data_berita": [
+        {
+          "data_gambar": "link_img",
+          "data_deskripsi": "link_deskripsi",
+          "data_tanggal": "link_tanggal"
+        },
+        {
+          "data_gambar": "link_img",
+          "data_deskripsi": "link_deskripsi",
+          "data_tanggal": "link_tanggal"
+        },
+        {
+          "data_gambar": "link_img",
+          "data_deskripsi": "link_deskripsi",
+          "data_tanggal": "link_tanggal"
+        },
+        {
+          "data_gambar": "link_img",
+          "data_deskripsi": "link_deskripsi",
+          "data_tanggal": "link_tanggal"
+        }
+      ]
+    },
+    {
+      "lokasi pelapor": [
+        { "latitude": -7.561372165686291, "longitude": 110.84820980536739 },
+        { "latitude": -7.561372165686291, "longitude": 110.84820980536739 },
+        { "latitude": -7.561372165686291, "longitude": 110.84820980536739 },
+        { "latitude": -7.561372165686291, "longitude": 110.84820980536739 },
+        { "latitude": -7.561372165686291, "longitude": 110.84820980536739 }
+      ]
+    },
+    {}
+  ]
+}

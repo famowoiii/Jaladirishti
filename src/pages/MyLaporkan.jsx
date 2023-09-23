@@ -3,24 +3,29 @@ import "../style/LaporkanStyle.css";
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
 
 const MyLaporkan = () => {
-  // State untuk menyimpan lokasi pengguna
   const [userLocation, setUserLocation] = useState({
     latitude: "",
     longitude: "",
   });
 
   useEffect(() => {
-    // Cek apakah lokasi pengguna sudah ada di localStorage
-    const storedLocation = localStorage.getItem("userLocation");
-    if (storedLocation) {
-      const locationData = JSON.parse(storedLocation);
-      setUserLocation(locationData);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          setUserLocation({ latitude, longitude });
+        },
+        (error) => {
+          console.error("Gagal mendapatkan lokasi geolokasi:", error);
+        }
+      );
+    } else {
+      console.error("Geolokasi tidak didukung oleh browser Anda.");
     }
-    // Tidak perlu lagi meminta izin geolokasi di sini
   }, []);
 
   const handleLaporkanClick = () => {
-    // Lakukan sesuatu saat tombol "LAPORKAN" diklik, misalnya mengirimkan laporan ke server
     alert(
       `Laporan banjir di ${userLocation.latitude}, ${userLocation.longitude} telah dikirim!`
     );
@@ -34,7 +39,7 @@ const MyLaporkan = () => {
           <div className="img">
             <BsFillExclamationTriangleFill size={90} />
           </div>
-          <div className="card-text"> Laporkan Banjir di Daerahmu!</div>
+          <div className="card-text">Laporkan Banjir di Daerahmu!</div>
           <input
             type="text"
             placeholder="Pilih daerah!"
