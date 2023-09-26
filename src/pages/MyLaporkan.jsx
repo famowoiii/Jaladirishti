@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "../style/LaporkanStyle.css";
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
+import { createClient } from "@supabase/supabase-js";
 
 const MyLaporkan = () => {
+  const apikey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqeGNlcG9ybm9odnhmcXlnbWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NTYwNjYsImV4cCI6MjAxMTIzMjA2Nn0.5Vgf8SPA2gb78BOXJhAUcqal-hGPuGDmKUG8zXwTZBw";
+  const supabaseUrl = "https://tjxcepornohvxfqygmiq.supabase.co";
+  const supabaseKey = apikey;
+  // Perhatikan perubahan ini
+  const supabase = createClient(supabaseUrl, supabaseKey);
   const [userLocation, setUserLocation] = useState({
     latitude: "",
     longitude: "",
@@ -25,10 +32,23 @@ const MyLaporkan = () => {
     }
   }, []);
 
-  const handleLaporkanClick = () => {
-    alert(
-      `Laporan banjir di ${userLocation.latitude}, ${userLocation.longitude} telah dikirim!`
-    );
+  const handleLaporkanClick = async () => {
+    const { data, error } = await supabase
+      .from("tabel") // Ganti "nama_tabel" dengan nama tabel Anda
+      .upsert([
+        {
+          // Data yang akan dimasukkan ke dalam tabel
+          data: [userLocation.latitude, userLocation.longitude],
+        },
+      ]);
+
+    if (error) {
+      console.error("Gagal menyimpan data ke Supabase:", error);
+    } else {
+      alert(
+        `Laporan banjir di ${userLocation.latitude}, ${userLocation.longitude} telah dikirim!`
+      );
+    }
   };
 
   return (
