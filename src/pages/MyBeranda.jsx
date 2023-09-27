@@ -1,24 +1,34 @@
-import React from "react";
-import "../style/BerandaStyle.css";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { Modal, Button } from "react-bootstrap";
+import { BsFillExclamationCircleFill } from "react-icons/bs";
 import { BeritaSlider } from "../components/BeritaSlider";
 import MapPotensi from "../function/MapPotensi";
-import { BsFillExclamationCircleFill } from "react-icons/bs";
 import DarkVariantExample from "../components/Topografi";
-import "../Data/DataBerita.json";
-import { MapPreview2 } from "../components/MapPreview2";
-
 import MapPreview from "../components/MapPreview";
-
-//import component yang berisikan keterangan untnuk button pada section 7
 import { Step1 } from "../PagesTutorial/Membersihkan";
 import { Step2 } from "../PagesTutorial/Membuang";
 import { Step3 } from "../PagesTutorial/Menanam";
 import { Step4 } from "../PagesTutorial/Mengurangi";
-import { useState } from "react";
+import "react-bootstrap/dist/react-bootstrap";
+import "../style/BerandaStyle.css";
 
 const MyBeranda = (props) => {
+  const [showModal, setShowModal] = useState(true);
+
+  const handleCloseModal = () => setShowModal(false);
+
+  useEffect(() => {
+    // Tambahkan kode untuk menampilkan modal di sini
+    if (showModal) {
+      handleShowModal();
+    }
+  }, [showModal]);
+
+  const handleShowModal = () => {
+    // Logika untuk menampilkan modal
+  };
+
   useEffect(() => {
     const storedLocation = localStorage.getItem("userLocation");
     if (storedLocation) {
@@ -26,36 +36,12 @@ const MyBeranda = (props) => {
       setUserLocation(locationData);
     }
   }, []);
+
   const [userLocation, setUserLocation] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const requestLocationPermission = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
 
-          const userLocationData = {
-            latitude: latitude,
-            longitude: longitude,
-          };
-          // Menyalin data lokasi pengguna sebelumnya dari state
-          const existingData = [...userLocation];
-          // Menambahkan lokasi baru ke dalam array
-          existingData.push(userLocationData);
-          // Simpan lokasi pengguna ke localStorage
-          localStorage.setItem("userLocation", JSON.stringify(existingData));
-          // Perbarui state userLocation dengan data yang sudah ada
-          setUserLocation(existingData);
-          setInputValue(`${latitude}, ${longitude}`);
-        },
-        (error) => {
-          console.error("Error fetching location:", error);
-        }
-      );
-    } else {
-      alert("Geolocation tidak didukung oleh browser Anda.");
-    }
+  const requestLocationPermission = () => {
+    // Logika untuk izin lokasi
   };
 
   const [Active, setActive] = useState(null);
@@ -63,9 +49,26 @@ const MyBeranda = (props) => {
   const handleButton = (step) => {
     setActive(step);
   };
+
   return (
     <div>
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleCloseModal} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Large Modal</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* Isi konten modal di sini */}
+          <Button variant="danger">Daerah ini masih terjadi banjir</Button>
+          <Button variant="primary">Daerah ini Sudah Tidak Banjir</Button>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
       {/* Section-1 Start */}
+
       <section className="section-1">
         <div className="section-1-text">
           <h1>Jaladirishti</h1>
